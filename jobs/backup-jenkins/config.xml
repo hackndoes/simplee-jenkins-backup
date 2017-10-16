@@ -40,14 +40,12 @@
                 &quot;&quot;&quot;
             }
         }
-        // stage(&apos;compress&apos;){
-        //     sh &apos;&apos;&apos;
-        //     #!/bin/bash
-        //     cd $JENKINS_HOME
-        //     BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-$(date +&quot;%y%m%d%M&quot;)
-	       // gzip ${BACKUP_NAME}.tar
-	       // &apos;&apos;&apos;
-        // }
+        stage(&apos;compress&apos;){
+            sh &apos;&apos;&apos;
+            #!/bin/bash
+	        gzip ${env.BACKUP_NAME}.tar
+	        &apos;&apos;&apos;
+        }
         // stage(&apos;upload&apos;){
         //     sh &apos;&apos;&apos;
         //     #!/bin/bash
