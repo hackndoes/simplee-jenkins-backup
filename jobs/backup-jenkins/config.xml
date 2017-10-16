@@ -11,13 +11,18 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty plugin="job-restrictions@0.6"/>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
-    <script>import java.text.SimpleDateFormat
-def dateFormat = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;)
-def date = new Date()
-date = dateFormat.format(date)
-pipeline {
+    <script>pipeline {
+    script {
+        import java.text.SimpleDateFormat
+        def dateFormat = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;)
+        def date = new Date()
+        date = dateFormat.format(date)        
+    }
     agent { label &apos;master&apos; }
     stages {
         stage(&apos;tar&apos;){
