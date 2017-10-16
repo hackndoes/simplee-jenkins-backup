@@ -15,7 +15,7 @@ def dateFormat = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;)
 def date = new Date()
 date = dateFormat.format(date)
 pipeline {
-    agent { &apos;master&apos; }
+    agent { label &apos;master&apos; }
     stages {
         stage(&apos;tar&apos;){
             steps {
