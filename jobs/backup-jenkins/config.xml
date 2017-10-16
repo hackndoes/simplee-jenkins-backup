@@ -57,11 +57,11 @@
         //     aws s3 cp ${BACKUP_NAME}.tar.gz s3://simplee-jenkins-backup
         //     &apos;&apos;&apos;
         // }
-        // stage(&apos;clean&apos;){
-        //     sh &apos;&apos;&apos;
-        //     rm -f ${BACKUP_NAME}*
-        //     &apos;&apos;&apos;
-        // }
+        stage(&apos;clean&apos;){
+            sh &apos;&apos;&apos;
+            rm -f ${BACKUP_NAME}*
+            &apos;&apos;&apos;
+        }
     }
 }</script>
     <sandbox>false</sandbox>
