@@ -19,17 +19,20 @@
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
     <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty plugin="job-restrictions@0.6"/>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
     <script>pipeline {
     agent { label &apos;master&apos; }
+    script {
+        currentDate = new Date().format(&apos;yyMMddHHmm&apos;, TimeZone.getTimeZone(&apos;UTC&apos;))
+        env.BACKUP_NAME = &quot;/tmp/jenkins-${env.JENKINS_VERSION}-backup-$currentDate&quot;
+    }
     stages {
         stage(&apos;tar&apos;){
             steps {
-                script {
-                    currentDate = new Date().format(&apos;yyMMddHHmm&apos;, TimeZone.getTimeZone(&apos;UTC&apos;))
-                    env.BACKUP_NAME = &quot;jenkins-${env.JENKINS_VERSION}-backup-$currentDate&quot;
-                }
                 sh &quot;&quot;&quot;
                     #!/bin/bash -ex
                     echo ${BACKUP_NAME}
