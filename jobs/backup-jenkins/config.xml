@@ -21,7 +21,7 @@ pipeline {
     script {
         def dateFormat = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;)
         def date = new Date()
-        date = dateFormat.format(date)        
+        def fdate = dateFormat.format(date)        
     }
     agent { label &apos;master&apos; }
     stages {
@@ -30,8 +30,8 @@ pipeline {
                 sh &apos;&apos;&apos;
                     #!/bin/bash -ex
                     cd $JENKINS_HOME
-                    echo &quot;BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${date}&quot;
-                    BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${date}
+                    echo &quot;BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${fdate}&quot;
+                    BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${fdate}
                 	tar cvvf ${BACKUP_NAME}.tar .
                     &apos;&apos;&apos;
             }
