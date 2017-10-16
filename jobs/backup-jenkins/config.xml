@@ -58,9 +58,11 @@
         //     &apos;&apos;&apos;
         // }
         stage(&apos;clean&apos;){
-            sh &apos;&apos;&apos;
-            rm -f ${BACKUP_NAME}*
-            &apos;&apos;&apos;
+            steps {
+                sh &apos;&apos;&apos;
+                rm -f ${BACKUP_NAME}*
+                &apos;&apos;&apos;
+            }
         }
     }
 }</script>
