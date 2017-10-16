@@ -26,7 +26,7 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
     <script>pipeline {
     agent { label &apos;master&apos; }
-    properties {
+    parameters {
         currentDate=&quot;&quot;
     }
     stages {
