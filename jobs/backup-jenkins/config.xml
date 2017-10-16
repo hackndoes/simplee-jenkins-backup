@@ -26,13 +26,14 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
     <script>pipeline {
     parameters {
-        string(name: &apos;currentDate&apos;, defaultValue: new Date().format(&apos;yyMMddHHmm&apos;, TimeZone.getTimeZone(&apos;UTC&apos;)), description: &apos;Date when pipeline execution starts&apos;)
+        string(name: &apos;currentDate&apos;, defaultValue: &apos;&apos;, description: &apos;Date when pipeline execution starts&apos;)
     }
     agent { label &apos;master&apos; }
     stages {
         stage(&apos;tar&apos;){
             steps {
                 script {
+                    currentDate = new Date().format(&apos;yyMMddHHmm&apos;, TimeZone.getTimeZone(&apos;UTC&apos;))
                     env.BACKUP_NAME = &quot;/tmp/jenkins-${env.JENKINS_VERSION}-backup-$currentDate&quot;
                 }
                 sh &quot;&quot;&quot;
