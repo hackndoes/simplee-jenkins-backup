@@ -31,7 +31,7 @@
             steps {
                 script {
                     library &apos;sysUtils@master&apos;
-                    env.BACKUP_NAME = &quot;jenkins-${env.JENKINS_VERSION}-backup-${date.currentDate}&quot;
+                    env.BACKUP_NAME = &quot;jenkins-${env.JENKINS_VERSION}-backup-&quot;+date.currentDate
                 }
                 sh &quot;&quot;&quot;
                     #!/bin/bash -ex
@@ -64,7 +64,7 @@
         // }
     }
 }</script>
-    <sandbox>true</sandbox>
+    <sandbox>false</sandbox>
   </definition>
   <triggers/>
   <disabled>false</disabled>
