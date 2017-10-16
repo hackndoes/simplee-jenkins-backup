@@ -11,6 +11,9 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty plugin="job-restrictions@0.6"/>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
     <script>pipeline {
@@ -18,13 +21,13 @@
     stages {
         stage(&apos;tar&apos;){
             steps {
-                sh &apos;&apos;&apos;
+                sh &quot;&quot;&quot;
                     #!/bin/bash -ex
                     DATE=$(date +&quot;yymmddMM&quot;)
                     echo &quot;DATE = ${DATE}&quot;
                     BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${DATE}
                 	tar cvvf ${BACKUP_NAME}.tar ${JENKINS_HOME}
-                    &apos;&apos;&apos;
+                    &quot;&quot;&quot;
             }
         }
         // stage(&apos;compress&apos;){
