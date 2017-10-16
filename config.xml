@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson>
+  <disabledAdministrativeMonitors/>
+  <version>2.73.2</version>
+  <numExecutors>1</numExecutors>
+  <mode>NORMAL</mode>
+  <useSecurity>true</useSecurity>
+  <authorizationStrategy class="com.michelin.cio.hudson.plugins.rolestrategy.RoleBasedAuthorizationStrategy">
+    <roleMap type="projectRoles"/>
+    <roleMap type="globalRoles">
+      <role name="admin" pattern=".*">
+        <permissions>
+          <permission>hudson.model.View.Delete</permission>
+          <permission>hudson.model.Computer.Connect</permission>
+          <permission>hudson.model.Run.Delete</permission>
+          <permission>com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains</permission>
+          <permission>hudson.model.Computer.Create</permission>
+          <permission>hudson.model.View.Configure</permission>
+          <permission>hudson.model.Computer.Build</permission>
+          <permission>hudson.model.Item.Configure</permission>
+          <permission>hudson.model.Hudson.Administer</permission>
+          <permission>hudson.model.Item.Cancel</permission>
+          <permission>hudson.model.Item.Read</permission>
+          <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View</permission>
+          <permission>hudson.model.Computer.Delete</permission>
+          <permission>hudson.model.Item.Build</permission>
+          <permission>hudson.scm.SCM.Tag</permission>
+          <permission>hudson.model.Item.Move</permission>
+          <permission>hudson.model.Item.Discover</permission>
+          <permission>hudson.model.Hudson.Read</permission>
+          <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Update</permission>
+          <permission>hudson.model.Item.Create</permission>
+          <permission>hudson.model.Item.Workspace</permission>
+          <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Delete</permission>
+          <permission>hudson.model.Computer.Provision</permission>
+          <permission>hudson.model.Run.Replay</permission>
+          <permission>hudson.model.View.Read</permission>
+          <permission>hudson.model.View.Create</permission>
+          <permission>hudson.model.Item.Delete</permission>
+          <permission>hudson.model.Computer.Configure</permission>
+          <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Create</permission>
+          <permission>hudson.model.Computer.Disconnect</permission>
+          <permission>hudson.model.Run.Update</permission>
+        </permissions>
+        <assignedSIDs>
+          <sid>admin</sid>
+        </assignedSIDs>
+      </role>
+      <role name="devops" pattern=".*">
+        <permissions>
+          <permission>hudson.model.View.Delete</permission>
+          <permission>hudson.model.Computer.Connect</permission>
+          <permission>hudson.model.Run.Delete</permission>
+          <permission>com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains</permission>
+          <permission>hudson.model.Computer.Create</permission>
+          <permission>hudson.model.View.Configure</permission>
+          <permission>hudson.model.Computer.Build</permission>
+          <permission>hudson.model.Item.Configure</permission>
+          <permission>hudson.model.Hudson.Administer</permission>
+          <permission>hudson.model.Item.Cancel</permission>
+          <permission>hudson.model.Item.Read</permission>
+          <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View</permission>
+          <permission>hudson.model.Computer.Delete</permission>
+          <permission>hudson.model.Item.Build</permission>
+          <permission>hudson.scm.SCM.Tag</permission>
+          <permission>hudson.model.Item.Move</permission>
+          <permission>hudson.model.Item.Discover</permission>
+          <permission>hudson.model.Hudson.Read</permission>
+          <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Update</permission>
+          <permission>hudson.model.Item.Create</permission>
+          <permission>hudson.model.Item.Workspace</permission>
+          <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Delete</permission>
+          <permission>hudson.model.Computer.Provision</permission>
+          <permission>hudson.model.Run.Replay</permission>
+          <permission>hudson.model.View.Read</permission>
+          <permission>hudson.model.View.Create</permission>
+          <permission>hudson.model.Item.Delete</permission>
+          <permission>hudson.model.Computer.Configure</permission>
+          <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Create</permission>
+          <permission>hudson.model.Computer.Disconnect</permission>
+          <permission>hudson.model.Run.Update</permission>
+        </permissions>
+        <assignedSIDs>
+          <sid>dan.hirsch@simplee.com</sid>
+          <sid>gilad@simplee.com</sid>
+          <sid>tom@simplee.com</sid>
+        </assignedSIDs>
+      </role>
+    </roleMap>
+    <roleMap type="slaveRoles"/>
+  </authorizationStrategy>
+  <securityRealm class="org.jenkinsci.plugins.googlelogin.GoogleOAuth2SecurityRealm" plugin="google-login@1.3">
+    <clientId>415692670953-0mt9194pofro1a1nc8j9b7ur45vi3c60.apps.googleusercontent.com</clientId>
+    <clientSecret>{AQAAABAAAAAgE6eXjti5u/ddA+i/pMoo+Ex95IkUF1ocfBs7InkZVlV0L2SeySedtGRdMlluPPOo}</clientSecret>
+    <domain>simplee.com</domain>
+  </securityRealm>
+  <disableRememberMe>false</disableRememberMe>
+  <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
+  <workspaceDir>${JENKINS_HOME}/workspace/${ITEM_FULLNAME}</workspaceDir>
+  <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
+  <markupFormatter class="hudson.markup.EscapedMarkupFormatter"/>
+  <jdks/>
+  <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
+  <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
+  <clouds>
+    <hudson.plugins.ec2.EC2Cloud plugin="ec2@1.37">
+      <name>ec2-test</name>
+      <useInstanceProfileForCredentials>false</useInstanceProfileForCredentials>
+      <credentialsId></credentialsId>
+      <privateKey>
+        <privateKey>{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}</privateKey>
+      </privateKey>
+      <instanceCap>10</instanceCap>
+      <templates>
+        <hudson.plugins.ec2.SlaveTemplate>
+          <ami>ami-d651b8ac</ami>
+          <description>ubuntu 16.04 server</description>
+          <zone>us-east-1a</zone>
+          <securityGroups></securityGroups>
+          <remoteFS>/home/ubuntu</remoteFS>
+          <type>T2Micro</type>
+          <ebsOptimized>false</ebsOptimized>
+          <labels>general-purpose</labels>
+          <mode>EXCLUSIVE</mode>
+          <initScript>sudo apt update
+sudo apt install -y openjdk-8-jre-headless</initScript>
+          <tmpDir></tmpDir>
+          <userData></userData>
+          <numExecutors>1</numExecutors>
+          <remoteAdmin>ubuntu</remoteAdmin>
+          <jvmopts></jvmopts>
+          <subnetId>subnet-20f4271f</subnetId>
+          <idleTerminationMinutes>10</idleTerminationMinutes>
+          <iamInstanceProfile></iamInstanceProfile>
+          <deleteRootOnTermination>true</deleteRootOnTermination>
+          <useEphemeralDevices>true</useEphemeralDevices>
+          <customDeviceMapping></customDeviceMapping>
+          <instanceCap>10</instanceCap>
+          <stopOnTerminate>false</stopOnTerminate>
+          <tags>
+            <hudson.plugins.ec2.EC2Tag>
+              <name>Environment</name>
+              <value>default</value>
+            </hudson.plugins.ec2.EC2Tag>
+            <hudson.plugins.ec2.EC2Tag>
+              <name>Name</name>
+              <value>default-general-purpose-jenkins-slave</value>
+            </hudson.plugins.ec2.EC2Tag>
+          </tags>
+          <usePrivateDnsName>false</usePrivateDnsName>
+          <associatePublicIp>false</associatePublicIp>
+          <useDedicatedTenancy>false</useDedicatedTenancy>
+          <launchTimeout>2147483647</launchTimeout>
+          <connectBySSHProcess>false</connectBySSHProcess>
+          <connectUsingPublicIp>false</connectUsingPublicIp>
+          <node>true</node>
+        </hudson.plugins.ec2.SlaveTemplate>
+      </templates>
+      <region>us-east-1</region>
+    </hudson.plugins.ec2.EC2Cloud>
+  </clouds>
+  <quietPeriod>5</quietPeriod>
+  <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
+  <views>
+    <hudson.model.AllView>
+      <owner class="hudson" reference="../../.."/>
+      <name>all</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+    </hudson.model.AllView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>DevOps Tasks</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>daily-merge</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+  </views>
+  <primaryView>all</primaryView>
+  <slaveAgentPort>50000</slaveAgentPort>
+  <label>master</label>
+  <crumbIssuer class="hudson.security.csrf.DefaultCrumbIssuer">
+    <excludeClientIPFromCrumb>false</excludeClientIPFromCrumb>
+  </crumbIssuer>
+  <nodeProperties/>
+  <globalNodeProperties/>
+</hudson>

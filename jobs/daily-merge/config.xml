@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.14.1">
+  <actions>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.2.2">
+      <jobProperties>
+        <string>jenkins.model.BuildDiscarderProperty</string>
+      </jobProperties>
+      <triggers>
+        <string>hudson.triggers.TimerTrigger</string>
+      </triggers>
+      <parameters>
+        <string>BRANCH</string>
+        <string>REMOTE_BRANCH</string>
+      </parameters>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+  </actions>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>10</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>20</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>REMOTE_BRANCH</name>
+          <description>The Branch that you want to merge into another branch</description>
+          <defaultValue>origin/master</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>BRANCH</name>
+          <description>The Branch into which you merge another branch</description>
+          <defaultValue>rc</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers>
+        <hudson.triggers.TimerTrigger>
+          <spec>H 8 * * 0-5</spec>
+        </hudson.triggers.TimerTrigger>
+      </triggers>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
+    <script>pipeline {
+    agent {
+        label &apos;general-purpose&apos;
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: &apos;20&apos;, artifactNumToKeepStr: &apos;20&apos;))
+    }
+    parameters{
+        string(name: &apos;REMOTE_BRANCH&apos;, defaultValue: &apos;origin/master&apos;, description: &apos;The Branch that you want to merge into another branch&apos;)
+        string(name: &apos;BRANCH&apos;, defaultValue: &apos;rc&apos;, description: &apos;The Branch into which you merge another branch&apos;)
+    }
+    triggers {
+        cron(&apos;0 8 * * 0-5&apos;)
+    }
+    stages {
+        stage(&apos;checkout&apos;) {
+            steps {
+                dir(&quot;${params.BRANCH}&quot;){
+                    git branch: &quot;${params.BRANCH}&quot;, credentialsId: &apos;5fc5e857-51ac-4e19-89db-d96a89c7e940&apos;, url: &apos;git@github.com:tomtsarfati/Simplee.git&apos;
+                }
+            }
+        }
+        stage(&apos;merge&apos;) {
+            steps {
+                dir(&quot;${params.BRANCH}&quot;) {
+                    sh &quot;git merge ${params.REMOTE_BRANCH}&quot;
+                    sshagent([&apos;5fc5e857-51ac-4e19-89db-d96a89c7e940&apos;]) {
+                        sh &quot;git push origin ${params.BRANCH}&quot;
+                    }
+                }
+            }
+        }
+    }
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
