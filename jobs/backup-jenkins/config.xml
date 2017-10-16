@@ -4,12 +4,52 @@
   <description>desc</description>
   <keepDependencies>false</keepDependencies>
   <properties>
+    <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty plugin="job-restrictions@0.6"/>
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
-    <script></script>
+    <script>pipeline {
+    agent { &apos;master&apos; }
+    
+    stages {
+        stage(&apos;tar&apos;){
+            steps {
+                sh &apos;&apos;&apos;
+                    #!/bin/bash -ex
+                    cd $JENKINS_HOME
+                    JENKINS_VERSION=$(docker run jenkins/jenkins:lts --version)
+                    BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-$(date +&quot;%y%m%d%M&quot;)
+                	tar cvvf ${BACKUP_NAME}.tar .
+                    &apos;&apos;&apos;
+            }
+        }
+        // stage(&apos;compress&apos;){
+        //     sh &apos;&apos;&apos;
+        //     #!/bin/bash
+        //     cd $JENKINS_HOME
+        //     JENKINS_VERSION=$(docker run jenkins/jenkins:lts --version)
+        //     BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-$(date +&quot;%y%m%d%M&quot;)
+	       // gzip ${BACKUP_NAME}.tar
+	       // &apos;&apos;&apos;
+        // }
+        // stage(&apos;upload&apos;){
+        //     sh &apos;&apos;&apos;
+        //     #!/bin/bash
+        //     cd $JENKINS_HOME
+        //     JENKINS_VERSION=$(docker run jenkins/jenkins:lts --version)
+        //     BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-$(date +&quot;%y%m%d%M&quot;)
+        //     aws s3 cp ${BACKUP_NAME}.tar.gz s3://simplee-jenkins-backup
+        //     &apos;&apos;&apos;
+        // }
+        // stage(&apos;clean&apos;){
+        //     sh &apos;&apos;&apos;
+        //     rm -f ${BACKUP_NAME}*
+        //     &apos;&apos;&apos;
+        // }
+    }
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
