@@ -4,7 +4,9 @@
     <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.2.2">
       <jobProperties/>
       <triggers/>
-      <parameters/>
+      <parameters>
+        <string>currentDate</string>
+      </parameters>
     </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
   </actions>
   <description>desc</description>
