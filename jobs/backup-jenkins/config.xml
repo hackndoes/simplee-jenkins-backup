@@ -11,6 +11,9 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty plugin="job-restrictions@0.6"/>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
     <script>pipeline {
@@ -18,7 +21,7 @@
     stages {
         stage(&apos;tar&apos;){
             steps {
-                library &apos;sysUtils&apos;
+                library &apos;sysUtils@master&apos;
                 sh &apos;&apos;&apos;
                     #!/bin/bash -ex
                     cd $JENKINS_HOME
