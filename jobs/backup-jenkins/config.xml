@@ -16,8 +16,8 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
-    <script>@Library(&apos;sysUtils&apos;)
-pipeline {
+    <script>pipeline {
+    library &apos;sysUtils&apos;
     agent { label &apos;master&apos; }
     stages {
         stage(&apos;tar&apos;){
