@@ -16,15 +16,12 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
-    <script>import java.text.SimpleDateFormat
+    <script>@Library(&apos;sysUtils&apos;)
 pipeline {
     agent { label &apos;master&apos; }
     stages {
         stage(&apos;tar&apos;){
             steps {
-                def dateFormat = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;)
-                def date = new Date()
-                def fdate = dateFormat.format(date)
                 sh &apos;&apos;&apos;
                     #!/bin/bash -ex
                     cd $JENKINS_HOME
