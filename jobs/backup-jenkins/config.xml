@@ -12,6 +12,7 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
     <script>pipeline {
     agent { &apos;master&apos; }
+    import java.text.SimpleDateFormat
     def dateFormat = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;)
     def date = new Date()
     date = dateFormat.format(date)
