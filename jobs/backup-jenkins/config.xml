@@ -19,6 +19,9 @@
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
     <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty plugin="job-restrictions@0.6"/>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
     <script>pipeline {
@@ -30,7 +33,7 @@
                     currentDate = new Date().format(&apos;yyMMddHHmm&apos;, TimeZone.getTimeZone(&apos;UTC&apos;))
                     env.BACKUP_NAME = &quot;jenkins-${env.JENKINS_VERSION}-backup-$currentDate&quot;
                 }
-                sh &quot;&quot;&quot;
+                sh sh returnStdout: true, script: &quot;&quot;&quot;
                     #!/bin/bash -ex
                     echo ${env.BACKUP_NAME}
                 	tar cvvf ${env.BACKUP_NAME}.tar ${env.JENKINS_HOME}
