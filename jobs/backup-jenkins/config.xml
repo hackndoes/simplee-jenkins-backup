@@ -25,8 +25,8 @@
                 sh &apos;&apos;&apos;
                     #!/bin/bash -ex
                     cd $JENKINS_HOME
-                    echo &quot;BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${fdate}&quot;
-                    BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${fdate}
+                    echo &quot;BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${currentDate}&quot;
+                    BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${currentDate}
                 	tar cvvf ${BACKUP_NAME}.tar .
                     &apos;&apos;&apos;
             }
