@@ -24,13 +24,16 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
-    <script>pipeline {
+    <script>import java.text.SimpleDateFormat
+pipeline {
     agent { label &apos;master&apos; }
+    properties {
+        currentDate=&quot;&quot;
+    }
     stages {
         stage(&apos;tar&apos;){
             steps {
                 script {
-                    import java.text.SimpleDateFormat
                     currentDate = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;).format(new Date())
                     env.BACKUP_NAME = &quot;jenkins-${env.JENKINS_VERSION}-backup-$currentDate&quot;
                 }
