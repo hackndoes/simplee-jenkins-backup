@@ -17,11 +17,11 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
     <script>pipeline {
-    library &apos;sysUtils&apos;
     agent { label &apos;master&apos; }
     stages {
         stage(&apos;tar&apos;){
             steps {
+                library &apos;sysUtils&apos;
                 sh &apos;&apos;&apos;
                     #!/bin/bash -ex
                     cd $JENKINS_HOME
