@@ -19,6 +19,9 @@
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
     <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty plugin="job-restrictions@0.6"/>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
     <script>pipeline {
@@ -33,18 +36,18 @@
                 sh &quot;&quot;&quot;
                     #!/bin/bash -ex
                     echo ${env.BACKUP_NAME}
-                	tar cvvf ${env.BACKUP_NAME}.tar ${JENKINS_HOME}
+                	tar cvvf ${env.BACKUP_NAME}.tar ${env.JENKINS_HOME}
                 &quot;&quot;&quot;
             }
         }
-        stage(&apos;compress&apos;){
-            steps {
-                sh &apos;&apos;&apos;
-                #!/bin/bash
-    	        gzip ${env.BACKUP_NAME}.tar
-    	        &apos;&apos;&apos;
-            }
-        }
+        // stage(&apos;compress&apos;){
+        //     steps {
+        //         sh &apos;&apos;&apos;
+        //         #!/bin/bash
+    	   //     gzip ${env.BACKUP_NAME}.tar
+    	   //     &apos;&apos;&apos;
+        //     }
+        // }
         // stage(&apos;upload&apos;){
         //     sh &apos;&apos;&apos;
         //     #!/bin/bash
@@ -54,13 +57,13 @@
         //     aws s3 cp ${BACKUP_NAME}.tar.gz s3://simplee-jenkins-backup
         //     &apos;&apos;&apos;
         // }
-        stage(&apos;clean&apos;){
-            steps {
-                sh &apos;&apos;&apos;
-                rm -f ${BACKUP_NAME}*
-                &apos;&apos;&apos;
-            }
-        }
+        // stage(&apos;clean&apos;){
+        //     steps {
+        //         sh &apos;&apos;&apos;
+        //         rm -f ${BACKUP_NAME}*
+        //         &apos;&apos;&apos;
+        //     }
+        // }
     }
 }</script>
     <sandbox>false</sandbox>
