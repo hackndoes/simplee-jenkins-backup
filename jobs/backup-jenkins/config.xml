@@ -33,7 +33,7 @@
                     currentDate = new Date().format(&apos;yyMMddHHmm&apos;, TimeZone.getTimeZone(&apos;UTC&apos;))
                     env.BACKUP_NAME = &quot;jenkins-${env.JENKINS_VERSION}-backup-$currentDate&quot;
                 }
-                sh sh returnStdout: true, script: &quot;&quot;&quot;
+                sh returnStdout: true, script: &quot;&quot;&quot;
                     #!/bin/bash -ex
                     echo ${env.BACKUP_NAME}
                 	tar cvvf ${env.BACKUP_NAME}.tar ${env.JENKINS_HOME}
