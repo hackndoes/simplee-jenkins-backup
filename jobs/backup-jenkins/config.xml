@@ -11,6 +11,9 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty plugin="job-restrictions@0.6"/>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
     <script>pipeline {
@@ -21,8 +24,9 @@
                 sh &apos;&apos;&apos;
                     #!/bin/bash -ex
                     cd $JENKINS_HOME
-                    echo &quot;BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-11111111&quot;
-                    BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-11111111
+                    DATE=$(date +&quot;yymmddMM&quot;)
+                    echo &quot;BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${DATE}&quot;
+                    BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${DATE}
                 	tar cvvf ${BACKUP_NAME}.tar .
                     &apos;&apos;&apos;
             }
