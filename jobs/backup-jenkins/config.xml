@@ -23,7 +23,7 @@
             steps {
                 sh &quot;&quot;&quot;
                     #!/bin/bash -ex
-                    DATE=$(date +&apos;yymmddMM&apos;)
+                    DATE=\$(date +&apos;yymmddMM&apos;)
                     echo DATE = ${DATE}
                     BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-${DATE}
                 	tar cvvf ${BACKUP_NAME}.tar ${JENKINS_HOME}
