@@ -2,8 +2,8 @@
 <hudson>
   <disabledAdministrativeMonitors/>
   <version>2.73.2</version>
-  <numExecutors>2</numExecutors>
-  <mode>NORMAL</mode>
+  <numExecutors>1</numExecutors>
+  <mode>EXCLUSIVE</mode>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="com.michelin.cio.hudson.plugins.rolestrategy.RoleBasedAuthorizationStrategy">
     <roleMap type="projectRoles"/>
