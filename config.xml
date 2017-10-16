@@ -203,6 +203,19 @@ sudo apt install -y openjdk-8-jre-headless</initScript>
   <crumbIssuer class="hudson.security.csrf.DefaultCrumbIssuer">
     <excludeClientIPFromCrumb>false</excludeClientIPFromCrumb>
   </crumbIssuer>
-  <nodeProperties/>
+  <nodeProperties>
+    <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.nodes.JobRestrictionProperty plugin="job-restrictions@0.6">
+      <jobRestriction class="com.synopsys.arc.jenkinsci.plugins.jobrestrictions.restrictions.logic.NotJobRestriction">
+        <restriction class="com.synopsys.arc.jenkinsci.plugins.jobrestrictions.restrictions.logic.MultipleOrJobRestriction">
+          <restrictions>
+            <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.restrictions.job.RegexNameRestriction>
+              <regexExpression>jenkins-backup</regexExpression>
+              <checkShortName>false</checkShortName>
+            </com.synopsys.arc.jenkinsci.plugins.jobrestrictions.restrictions.job.RegexNameRestriction>
+          </restrictions>
+        </restriction>
+      </jobRestriction>
+    </com.synopsys.arc.jenkinsci.plugins.jobrestrictions.nodes.JobRestrictionProperty>
+  </nodeProperties>
   <globalNodeProperties/>
 </hudson>
