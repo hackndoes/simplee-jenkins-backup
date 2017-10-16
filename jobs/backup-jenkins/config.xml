@@ -41,10 +41,12 @@
             }
         }
         stage(&apos;compress&apos;){
-            sh &apos;&apos;&apos;
-            #!/bin/bash
-	        gzip ${env.BACKUP_NAME}.tar
-	        &apos;&apos;&apos;
+            steps {
+                sh &apos;&apos;&apos;
+                #!/bin/bash
+    	        gzip ${env.BACKUP_NAME}.tar
+    	        &apos;&apos;&apos;
+            }
         }
         // stage(&apos;upload&apos;){
         //     sh &apos;&apos;&apos;
