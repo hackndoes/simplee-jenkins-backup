@@ -31,7 +31,7 @@
             steps {
                 sh &quot;&quot;&quot;
                     #!/bin/bash -ex
-                    BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-$(date)
+                    BACKUP_NAME=jenkins-${JENKINS_VERSION}-backup-`date`
                 	tar cvvf ${BACKUP_NAME}.tar ${JENKINS_HOME}
                     &quot;&quot;&quot;
             }
