@@ -16,9 +16,10 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.41">
-    <script>pipeline {
+    <script>import java.text.SimpleDateFormat
+pipeline {
     script {
-        import java.text.SimpleDateFormat
+        
         def dateFormat = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;)
         def date = new Date()
         date = dateFormat.format(date)        
