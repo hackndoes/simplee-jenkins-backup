@@ -19,7 +19,6 @@
     <script>import java.text.SimpleDateFormat
 pipeline {
     script {
-        
         def dateFormat = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;)
         def date = new Date()
         date = dateFormat.format(date)        
