@@ -35,7 +35,7 @@
                 }
                 sh script: &quot;&quot;&quot;
                     #!/bin/bash -ex
-                    echo ${env.BACKUP_NAME}
+                    cd /tmp
                 	tar cvvf ${env.BACKUP_NAME}.tar ${env.JENKINS_HOME}
                 &quot;&quot;&quot;
             }
